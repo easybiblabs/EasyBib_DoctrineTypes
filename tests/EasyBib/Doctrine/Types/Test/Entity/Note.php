@@ -20,7 +20,7 @@ class Note extends PersistentObject
 {
     /**
      * @Column(type="integer")
-     * @GeneratedValue
+     * @GeneratedValue(strategy="IDENTITY")
      * @Id
      */
     protected $id;
