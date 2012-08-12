@@ -38,6 +38,9 @@ class HstoreTestCase extends \PHPUnit_Framework_TestCase
         // create the entity manager
         $this->em = EntityManager::create($dbConfig, $doctrineConfig);
 
+        // enable 'hstore'
+        $this->em->getConnection()->exec("CREATE EXTENSION IF NOT EXISTS hstore");
+
         // make the PersistentObject happy
         PersistentObject::setObjectManager($this->em);
     }
