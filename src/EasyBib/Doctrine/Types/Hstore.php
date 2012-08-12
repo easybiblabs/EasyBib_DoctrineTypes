@@ -10,7 +10,7 @@ class Hstore extends Type
 
     public function getSqlDeclaration(array $fieldDeclaration, AbstractPlatform $platform)
     {
-        // return the SQL used to create your column type. To create a portable column type, use the $platform.
+        return 'hstore';
     }
 
     public function convertToPHPValue($value, AbstractPlatform $platform)

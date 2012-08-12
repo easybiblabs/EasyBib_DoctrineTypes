@@ -5,7 +5,8 @@ use Doctrine\DBAL\Types\Type;
 use Doctrine\ORM\Tools\Setup;
 use Doctrine\ORM\EntityManager;
 use Doctrine\Common\Persistence\PersistentObject;
-use Doctrine\Common\Util\Debug;
+use Doctrine\ORM\Tools\SchemaTool;
+use Doctrine\Common\Util\Debug; // for debugging: Debug::dump
 
 use EasyBib\Doctrine\Types\Test\Entity\Note;
 
@@ -102,5 +103,19 @@ class HstoreTestCase extends \PHPUnit_Framework_TestCase
         $this->assertArrayHasKey('foo', $attributes);
 
         $this->assertInternalType('float', $attributes['foo']);
+    }
+
+    /**
+     * Ensure type hstore is added when the table is created!
+     */
+    public function testSchema()
+    {
+        $tool = new SchemaTool($this->em);
+        $classes = array(
+            $this->em->getClassMetadata('EasyBib\Doctrine\Types\Test\Entity\Note'),
+        );
+        $sql = $tool->getCreateSchemaSql($classes);
+
+        $this->assertEquals("CREATE TABLE test (id SERIAL NOT NULL, title VARCHAR(255) NOT NULL, attributes hstore NOT NULL, PRIMARY KEY(id))", $sql[0]);
     }
 }
