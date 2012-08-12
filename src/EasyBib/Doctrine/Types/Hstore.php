@@ -52,7 +52,6 @@ class Hstore extends Type
         }
         $hstoreString = substr(trim($hstoreString), 0, -1) . "\n";
 
-var_dump($hstoreString); exit;
         return $hstoreString;
     }
 
