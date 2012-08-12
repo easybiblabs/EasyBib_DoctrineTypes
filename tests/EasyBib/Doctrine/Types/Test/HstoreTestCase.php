@@ -78,5 +78,9 @@ class HstoreTestCase extends \PHPUnit_Framework_TestCase
         $id = $note->getId();
 
         $this->assertInternalType('int', $id);
+        unset($note);
+
+        $noteDatabase = $this->em->getRepository('EasyBib\Doctrine\Types\Test\Entity\Note')->find($id);
+        $this->assertEquals($attributes, $noteDatabase->getAttributes());
     }
 }
