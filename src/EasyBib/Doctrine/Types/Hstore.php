@@ -15,8 +15,17 @@ class Hstore extends Type
 
     public function convertToPHPValue($value, AbstractPlatform $platform)
     {
-        // This is executed when the value is read from the database. Make your conversions here, optionally using the $platform.
-        var_dump($value, '2php'); exit;
+        if (empty($value)) {
+            return array();
+        }
+
+        $attributes = explode(', ', $value);
+        $array      = array();
+        foreach ($attributes as $attribute) {
+            list($key, $value) = explode('=>', $attribute);
+            $array[substr($key, 1, -1)] = substr($value, 1, -1);
+        }
+        return $array;
     }
 
     /**
