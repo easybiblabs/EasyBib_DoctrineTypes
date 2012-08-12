@@ -22,20 +22,20 @@ class Hstore extends Type
         $attributes = explode(', ', $value);
         $array      = array();
         foreach ($attributes as $attribute) {
-            list($key, $value) = explode('=>', $attribute);
+            list($k, $v) = explode('=>', $attribute);
 
-            $value = substr($value, 1, -1);
-            if (is_numeric($value)) {
-                if (false === strpos($value, '.')) {
-                    $value = (int) $value;
+            $v = substr($v, 1, -1);
+            if (is_numeric($v)) {
+                if (false === strpos($v, '.')) {
+                    $v = (int) $v;
                 } else {
-                    $value = (float) $value;
+                    $v = (float) $v;
                 }
-            } elseif (in_array($value, array('true', 'false'))) {
-                $value = ($value == 'true')?true:false;
+            } elseif (in_array($v, array('true', 'false'))) {
+                $v = ($v == 'true')?true:false;
             }
 
-            $array[substr($key, 1, -1)] = $value;
+            $array[substr($k, 1, -1)] = $v;
         }
         return $array;
     }
