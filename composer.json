@@ -1,8 +1,8 @@
 {
     "name": "easybib/doctrinetypes",
     "description": "A couple doctrine types (e.g. hstore).",
+    "license": "BSD-2-Clause",
     "require": {
-        "doctrine/dbal": "2.2.2",
         "doctrine/orm": "2.2.2"
     },
     "autoload": {
