@@ -19,7 +19,9 @@ class HstoreTestCase extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         // register our custom type
-        Type::addType('hstore', 'EasyBib\Doctrine\Types\Hstore');
+        if (!Type::hasType('hstore')) {
+            Type::addType('hstore', 'EasyBib\Doctrine\Types\Hstore');
+        }
 
         $isDevMode      = true;
         $doctrineConfig = Setup::createAnnotationMetadataConfiguration(
@@ -43,6 +45,12 @@ class HstoreTestCase extends \PHPUnit_Framework_TestCase
 
         // make the PersistentObject happy
         PersistentObject::setObjectManager($this->em);
+    }
+
+    public function tearDown()
+    {
+        $this->em->getConnection()->close();
+        unset($this->em);
     }
 
     /**
