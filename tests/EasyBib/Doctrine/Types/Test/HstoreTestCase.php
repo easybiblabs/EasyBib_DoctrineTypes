@@ -61,13 +61,16 @@ class HstoreTestCase extends \PHPUnit_Framework_TestCase
         $note = new Note();
 
         $note->setTitle(sprintf("This is the note's title (created: %s)", date("Y-m-d")));
-        $note->setAttributes(array(
+
+        $attributes = array(
             'schemaless' => 'data',
             'in'         => 'postgres',
             'mind'       => 'blown',
             'nosql'      => 'goes rdbms',
             'foo'        => 1.1,
-        ));
+        );
+
+        $note->setAttributes($attributes);
 
         $this->em->persist($note);
         $this->em->flush();
