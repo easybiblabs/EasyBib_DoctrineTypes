@@ -23,7 +23,19 @@ class Hstore extends Type
         $array      = array();
         foreach ($attributes as $attribute) {
             list($key, $value) = explode('=>', $attribute);
-            $array[substr($key, 1, -1)] = substr($value, 1, -1);
+
+            $value = substr($value, 1, -1);
+            if (is_numeric($value)) {
+                if (false === strpos($value, '.')) {
+                    $value = (int) $value;
+                } else {
+                    $value = (float) $value;
+                }
+            } elseif (in_array($value, array('true', 'false'))) {
+                $value = ($value == 'true')?true:false;
+            }
+
+            $array[substr($key, 1, -1)] = $value;
         }
         return $array;
     }

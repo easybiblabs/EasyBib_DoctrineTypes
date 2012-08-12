@@ -100,5 +100,7 @@ class HstoreTestCase extends \PHPUnit_Framework_TestCase
         $this->assertArrayHasKey('mind', $attributes);
         $this->assertArrayHasKey('nosql', $attributes);
         $this->assertArrayHasKey('foo', $attributes);
+
+        $this->assertInternalType('float', $attributes['foo']);
     }
 }
