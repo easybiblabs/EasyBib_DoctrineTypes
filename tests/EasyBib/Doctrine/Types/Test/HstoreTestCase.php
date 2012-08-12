@@ -83,4 +83,22 @@ class HstoreTestCase extends \PHPUnit_Framework_TestCase
         $noteDatabase = $this->em->getRepository('EasyBib\Doctrine\Types\Test\Entity\Note')->find($id);
         $this->assertEquals($attributes, $noteDatabase->getAttributes());
     }
+
+    /**
+     * @todo This test is totally arbitrary because I am retrieving something that
+     * exists in my database. I need to figure out how to make Doctrine forget what
+     * it previously knew/created.
+     */
+    public function testFromDatabase()
+    {
+        $note       = $this->em->getRepository('EasyBib\Doctrine\Types\Test\Entity\Note')->find(38);
+        $attributes = $note->getAttributes();
+
+        $this->assertInternalType('array', $attributes);
+        $this->assertArrayHasKey('schemaless', $attributes);
+        $this->assertArrayHasKey('in', $attributes);
+        $this->assertArrayHasKey('mind', $attributes);
+        $this->assertArrayHasKey('nosql', $attributes);
+        $this->assertArrayHasKey('foo', $attributes);
+    }
 }
