@@ -1,4 +1,4 @@
-<phpunit bootstrap="./tests/TestInit.php">
+<phpunit bootstrap="./tests/TestInit.php" verbose="true" debug="true" colors="true">
     <testsuite>
         <file>./tests/EasyBib/Doctrine/Types/Test/HstoreTestCase.php</file>
     </testsuite>
