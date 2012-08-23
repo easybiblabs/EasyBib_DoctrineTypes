@@ -13,9 +13,24 @@ use EasyBib\Doctrine\Types\Test\Entity\Note;
 class HstoreTestCase extends \PHPUnit_Framework_TestCase
 {
     /**
+     * @var array
+     */
+    protected $classes;
+
+    /**
      * @var Doctrine\ORM\EntityManager
      */
     protected $em;
+
+    /**
+     * @var Doctrine\ORM\Tools\SchemaTool
+     */
+    protected $tool;
+
+    /**
+     * @var bool
+     */
+    protected $isTravis;
 
     public function setUp()
     {
@@ -32,13 +47,13 @@ class HstoreTestCase extends \PHPUnit_Framework_TestCase
 
         // database configuration parameters
         $rootTestsFolder = dirname(dirname(dirname(dirname(__DIR__))));
-        $isTravis        = getenv("TRAVIS");
+        $this->isTravis  = getenv("TRAVIS");
         if (file_exists($rootTestsFolder . '/db-config.php')) {
             $dbConfig = include $rootTestsFolder . '/db-config.php';
-        } elseif (false !== $isTravis) {
+        } elseif (false !== $this->isTravis) {
             $dbConfig = include $rootTestsFolder . '/db-config-travisci.php';
         } else {
-            throw new \RuntimeException("No database configuration found: " . var_export($_SERVER, true));
+            throw new \RuntimeException("No database configuration found.");
         }
 
         // create the entity manager
@@ -49,6 +64,27 @@ class HstoreTestCase extends \PHPUnit_Framework_TestCase
 
         // make the PersistentObject happy
         PersistentObject::setObjectManager($this->em);
+
+        // create table
+        $this->setUpSchema($this->em);
+    }
+
+    /**
+     * Create the schema!
+     *
+     * @return void
+     */
+    public function setUpSchema(EntityManager $em)
+    {
+        $this->classes = array(
+            $em->getClassMetadata('EasyBib\Doctrine\Types\Test\Entity\Note'),
+        );
+
+        $this->tool = new SchemaTool($em);
+        if (false === $this->isTravis) {
+            return;
+        }
+        $this->tool->createSchema($classes);
     }
 
     public function tearDown()
@@ -58,6 +94,12 @@ class HstoreTestCase extends \PHPUnit_Framework_TestCase
          *       will still end up in this function.
          */
         if ($this->em !== null) {
+            if (false === $this->isTravis) {
+                $this->em->getConnection()->close();
+                unset($this->em);
+                return;
+            }
+            $this->tool->dropSchema($this->classes);
             $this->em->getConnection()->close();
             unset($this->em);
         }
