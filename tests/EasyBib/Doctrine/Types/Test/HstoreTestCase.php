@@ -32,12 +32,13 @@ class HstoreTestCase extends \PHPUnit_Framework_TestCase
 
         // database configuration parameters
         $rootTestsFolder = dirname(dirname(dirname(dirname(__DIR__))));
+        $isTravis        = getenv("TRAVIS");
         if (file_exists($rootTestsFolder . '/db-config.php')) {
             $dbConfig = include $rootTestsFolder . '/db-config.php';
-        } elseif (isset($_ENV['TRAVIS'])) {
+        } elseif (false !== $isTravis) {
             $dbConfig = include $rootTestsFolder . '/db-config-travisci.php';
         } else {
-            throw new \RuntimeException("No database configuration found: " . var_export($_ENV, true));
+            throw new \RuntimeException("No database configuration found: " . var_export($_SERVER, true));
         }
 
         // create the entity manager
