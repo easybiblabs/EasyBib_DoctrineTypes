@@ -52,8 +52,8 @@ class HstoreTestCase extends \PHPUnit_Framework_TestCase
 
     public function tearDown()
     {
-        $this->em->getConnection()->close();
-        unset($this->em);
+        //$this->em->getConnection()->close();
+        //unset($this->em);
     }
 
     /**
