@@ -62,6 +62,9 @@ class HstoreTestCase extends \PHPUnit_Framework_TestCase
         // enable 'hstore'
         $this->em->getConnection()->exec("CREATE EXTENSION IF NOT EXISTS hstore");
 
+        // register type with DBAL
+        $this->em->getConnection()->getDatabasePlatform()->registerDoctrineTypeMapping('hstore', 'hstore');
+
         // make the PersistentObject happy
         PersistentObject::setObjectManager($this->em);
 
@@ -163,5 +166,16 @@ class HstoreTestCase extends \PHPUnit_Framework_TestCase
     {
         $sql = $this->tool->getCreateSchemaSql($this->classes);
         $this->assertEquals("CREATE TABLE test (id SERIAL NOT NULL, title VARCHAR(255) NOT NULL, attributes hstore NOT NULL, PRIMARY KEY(id))", $sql[0]);
+    }
+
+    /**
+     * There seems to be a bug when I try to drop a table.
+     */
+    public function testDropTable()
+    {
+        $statements = $this->tool->getDropSchemaSQL($this->classes);
+        $this->assertInternalType('array', $statements);
+        $this->assertSame('DROP SEQUENCE test_id_seq', $statements[0]);
+        $this->assertSame('DROP TABLE test', $statements[1]);
     }
 }

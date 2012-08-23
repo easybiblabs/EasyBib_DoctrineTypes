@@ -22,3 +22,6 @@ Finally (assuming the above worked):
 
     use Doctrine\DBAL\Types\Type;
     Type::addType('hstore', 'EasyBib\Doctrine\Type\Hstore');
+
+    /* ... more setup here ... */
+    $entityManager->getConnection()->getDatabasePlatform()->registerDoctrineTypeMapping('hstore', 'hstore');
