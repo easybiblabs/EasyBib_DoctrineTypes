@@ -1,5 +1,7 @@
 # [WIP] Support for PostgreSQL's hstore type for Doctrine
 
+[![Build Status](https://secure.travis-ci.org/easybib/EasyBib_DoctrineTypes.png?branch=master)](http://travis-ci.org/easybib/EasyBib_DoctrineTypes)
+
 Add the following to your composer.json:
 
     {
