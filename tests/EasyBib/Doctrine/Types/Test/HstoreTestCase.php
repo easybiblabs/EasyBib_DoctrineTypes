@@ -84,7 +84,7 @@ class HstoreTestCase extends \PHPUnit_Framework_TestCase
         if (false === $this->isTravis) {
             return;
         }
-        $this->tool->createSchema($classes);
+        $this->tool->createSchema($this->classes);
     }
 
     public function tearDown()
