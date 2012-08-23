@@ -52,8 +52,14 @@ class HstoreTestCase extends \PHPUnit_Framework_TestCase
 
     public function tearDown()
     {
-        //$this->em->getConnection()->close();
-        //unset($this->em);
+        /**
+         * @desc Despite throwing an exception in {@link self::setUp()}, PHPUnit
+         *       will still end up in this function.
+         */
+        if ($this->em !== null) {
+            $this->em->getConnection()->close();
+            unset($this->em);
+        }
     }
 
     /**
