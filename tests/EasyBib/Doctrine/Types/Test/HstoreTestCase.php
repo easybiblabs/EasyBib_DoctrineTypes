@@ -161,12 +161,7 @@ class HstoreTestCase extends \PHPUnit_Framework_TestCase
      */
     public function testSchema()
     {
-        $tool = new SchemaTool($this->em);
-        $classes = array(
-            $this->em->getClassMetadata('EasyBib\Doctrine\Types\Test\Entity\Note'),
-        );
-        $sql = $tool->getCreateSchemaSql($classes);
-
+        $sql = $this->tool->getCreateSchemaSql($this->classes);
         $this->assertEquals("CREATE TABLE test (id SERIAL NOT NULL, title VARCHAR(255) NOT NULL, attributes hstore NOT NULL, PRIMARY KEY(id))", $sql[0]);
     }
 }
