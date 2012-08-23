@@ -146,6 +146,11 @@ class HstoreTestCase extends \PHPUnit_Framework_TestCase
      */
     public function testFromDatabase()
     {
+        if (false !== $this->isTravis) {
+            $this->markTestSkipped("This won't run on travis-ci.");
+            return;
+        }
+
         $note       = $this->em->getRepository('EasyBib\Doctrine\Types\Test\Entity\Note')->find(38);
         $attributes = $note->getAttributes();
 
