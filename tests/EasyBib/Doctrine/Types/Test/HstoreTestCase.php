@@ -34,7 +34,7 @@ class HstoreTestCase extends \PHPUnit_Framework_TestCase
         $rootTestsFolder = dirname(dirname(dirname(dirname(__DIR__))));
         if (file_exists($rootTestsFolder . '/db-config.php')) {
             $dbConfig = include $rootTestsFolder . '/db-config.php';
-        } elseif (isset($_ENV['travis'])) {
+        } elseif (isset($_ENV['TRAVIS'])) {
             $dbConfig = include $rootTestsFolder . '/db-config-travisci.php';
         } else {
             throw new \RuntimeException("No database configuration found!");
