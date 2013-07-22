@@ -19,12 +19,10 @@ class Hstore extends Type
             return array();
         }
 
-        $attributes = explode(', ', $value);
-        $array      = array();
-        foreach ($attributes as $attribute) {
-            list($k, $v) = explode('=>', $attribute);
+        $attributes = json_decode('{' . str_replace('"=>"', '":"', $value) . '}', true);
 
-            $v = substr($v, 1, -1);
+        $array      = array();
+        foreach ($attributes as $k => $v) {
             if (is_numeric($v)) {
                 if (false === strpos($v, '.')) {
                     $v = (int) $v;
@@ -35,7 +33,7 @@ class Hstore extends Type
                 $v = ($v == 'true')?true:false;
             }
 
-            $array[substr($k, 1, -1)] = $v;
+            $array[$k] = $v;
         }
         return $array;
     }
