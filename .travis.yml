@@ -2,6 +2,7 @@ language: php
 php:
   - 5.3
   - 5.4
+  - 5.5
 before_script:
   - psql -c 'create database test;' -U postgres
-  - ./composer.phar -v install
+  - ./composer.phar -v -n install
