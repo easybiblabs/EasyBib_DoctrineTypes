@@ -180,7 +180,7 @@ class HstoreTestCase extends \PHPUnit_Framework_TestCase
     {
         $statements = $this->tool->getDropSchemaSQL($this->classes);
         $this->assertInternalType('array', $statements);
-        $this->assertSame('DROP SEQUENCE test_id_seq', $statements[0]);
+        $this->assertSame('DROP SEQUENCE test_id_seq CASCADE', $statements[0]);
         $this->assertSame('DROP TABLE test', $statements[1]);
     }
 }
