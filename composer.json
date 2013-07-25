@@ -3,7 +3,7 @@
     "description": "A couple doctrine types (e.g. hstore).",
     "license": "BSD-2-Clause",
     "require": {
-        "doctrine/orm": "2.2.2"
+        "doctrine/orm": "*"
     },
     "autoload": {
         "psr-0": {
