@@ -30,7 +30,7 @@ class Hstore extends Type
                     $v = (float) $v;
                 }
             } elseif (in_array($v, array('true', 'false'))) {
-                $v = ($v == 'true')?true:false;
+                $v = $v == 'true';
             }
 
             $array[$k] = $v;
