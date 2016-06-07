@@ -1,21 +1,23 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "This file is @generated automatically"
     ],
-    "hash": "e8fe99941f45b40ee30899930354f9e1",
+    "hash": "1427192cdcb8f66ad0dcd76d71752799",
+    "content-hash": "5615d5c49767c78a7d181ce1d18a1825",
     "packages": [
         {
             "name": "doctrine/common",
             "version": "2.3.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/doctrine/common",
-                "reference": "2.3.0"
+                "url": "https://github.com/doctrine/common.git",
+                "reference": "d1c7d4334e38cad603a5c863d4c7b91bb04ec6b2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/doctrine/common/zipball/2.3.0",
+                "url": "https://api.github.com/repos/doctrine/common/zipball/d1c7d4334e38cad603a5c863d4c7b91bb04ec6b2",
                 "reference": "2.3.0",
                 "shasum": ""
             },
@@ -84,7 +86,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/dbal/zipball/2.3.4",
+                "url": "https://api.github.com/repos/doctrine/dbal/zipball/2a37b007dda8e21bdbb8fa445be8fa0064199e13",
                 "reference": "2.3.4",
                 "shasum": ""
             },
@@ -147,7 +149,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/doctrine2/zipball/2.3.4",
+                "url": "https://api.github.com/repos/doctrine/doctrine2/zipball/a41b02c080114c0de3da4ee9fba61f7d18fae7d0",
                 "reference": "2.3.4",
                 "shasum": ""
             },
@@ -213,12 +215,12 @@
             "target-dir": "Symfony/Component/Console",
             "source": {
                 "type": "git",
-                "url": "https://github.com/symfony/Console.git",
-                "reference": "v2.3.2"
+                "url": "https://github.com/symfony/console.git",
+                "reference": "251dd20d2f8acaf2f7832300eec9a20e9951393c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Console/zipball/v2.3.2",
+                "url": "https://api.github.com/repos/symfony/console/zipball/251dd20d2f8acaf2f7832300eec9a20e9951393c",
                 "reference": "v2.3.2",
                 "shasum": ""
             },
@@ -261,20 +263,12 @@
             "time": "2013-07-11 19:36:36"
         }
     ],
-    "packages-dev": [
-
-    ],
-    "aliases": [
-
-    ],
+    "packages-dev": [],
+    "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [
-
-    ],
-    "platform": [
-
-    ],
-    "platform-dev": [
-
-    ]
+    "stability-flags": [],
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": []
 }
